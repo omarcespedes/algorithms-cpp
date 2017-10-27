@@ -3,6 +3,7 @@
 //
 #include <cstdio>
 #include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -30,25 +31,27 @@ int getInt(string word) {
 }
 
 int findMatch(int i, int ac) {
-    if(ac == 31) return 2;
-    if(i == n) return 1;
+    int r;
+    if(ac == 31) return 1;
+    if(i == n) return 0;
 
-    if(!dp[i][ac]) {
-       return 0;
+    if(dp[i][ac] != -1) {
+       return dp[i][ac];
     }
 
-
-    return findMatch(i + 1, ac | left[i] || findMatch(i + 1, ac | right[i]));
+    r = findMatch(i + 1, ac | left[i]) | findMatch(i + 1, ac | right[i]);
+    dp[i][ac] = r;
+    return r;
 }
 
 int main () {
-    printf("s: %d %d", dp[0][0], 2 || 2);
     while( true ) {
         char x[10],y[10];
         scanf("%d", &n);
         if(n == 0) {
             break;
         }
+        memset(dp, -1, sizeof(dp));
         for (int i = 0 ; i < n ; i++) {
             scanf("%s %s", &x , &y);
             left[i] = getInt(x);
