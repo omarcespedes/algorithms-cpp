@@ -9,9 +9,9 @@ int left[101];
 int right[101];
 int dp[101][33];
 
-int getInt(string word) {
+int getInt(char word[]) {
     int r = 0;
-    for(int i = 0 ; i < word.length(); i++) {
+    for(int i = 0 ; i < word[i]; i++) {
         if(word[i] == 'a') {
             r = r | 16;
         } else if(word[i] == 'e') {
@@ -28,17 +28,11 @@ int getInt(string word) {
 }
 
 int findMatch(int i, int ac) {
-    int r;
     if(ac == 31) return 1;
     if(i == n) return 0;
-
-    if(dp[i][ac] != -1) {
+    if(dp[i][ac] != -1)
        return dp[i][ac];
-    }
-
-    r = findMatch(i + 1, ac | left[i]) | findMatch(i + 1, ac | right[i]);
-    dp[i][ac] = r;
-    return r;
+    return dp[i][ac] = findMatch(i + 1, ac | left[i]) || findMatch(i + 1, ac | right[i]);
 }
 
 int main () {
@@ -54,11 +48,7 @@ int main () {
             left[i] = getInt(x);
             right[i] = getInt(y);
         }
-        if(findMatch(0, 0)) {
-            printf("EXISTE\n");
-        } else {
-            printf("NO EXISTE\n");
-        }
+        puts(findMatch(0, 0)? "EXISTE" : "NO EXISTE");
     }
     return 0;
 }
