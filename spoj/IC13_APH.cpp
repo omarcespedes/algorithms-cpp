@@ -1,6 +1,3 @@
-//
-// Created by Omar Cespedes on 10/24/17.
-//
 #include <cstdio>
 #include <string>
 #include <cstring>
@@ -58,9 +55,9 @@ int main () {
             right[i] = getInt(y);
         }
         if(findMatch(0, 0)) {
-            printf("EXISTE");
+            printf("EXISTE\n");
         } else {
-            printf("NO EXISTE");
+            printf("NO EXISTE\n");
         }
     }
     return 0;
