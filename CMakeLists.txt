@@ -3,5 +3,5 @@ project(algorithms-cpp)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES spoj/IC13_APH.cpp)
+set(SOURCE_FILES uva/uva10496/uva10496.cpp)
 add_executable(algorithms-cpp ${SOURCE_FILES})
