@@ -10,13 +10,15 @@ int y[12];
 int t = 0;
 
 int tsp(int pos, int bitmask) {
-    int m = 2147483647;
+    int m = 2147483000;
     int tmp = 0;
-    if(t == pos)
-        return 2147483647;
+    if(t == pos) return 0;
 
-    for(int i = pos ; i < t ; i++) {
-        tmp = dist[pos][i] + tsp( i + 1, bitmask | 1 << pos + 1);
+    for(int i = 0 ; i < t ; i++) {
+        if (pos == i || //ya visidado) {
+            continue;
+        }
+        tmp = dist[pos][i + 1] + tsp( i + 1, bitmask | 1 << pos + 1);
         m = min(m, tmp);
     }
 
@@ -37,7 +39,7 @@ int main() {
         }
         for(int i = 0 ; i < t ; i++) {
             for(int j = i + 1 ; j < t; j++) {
-                dist[i][j] = abs(x[i] - x[j]) + abs(y[i] - y[j]);
+                dist[i][j] = dist[j][i] =  abs(x[i] - x[j]) + abs(y[i] - y[j]);
             }
         }
         int x = tsp(0,0);
