@@ -11,15 +11,16 @@ int t = 0;
 
 int tsp(int pos, int bitmask) {
     int m = 2147483000;
-    int tmp = 0;
-    if(t == pos) return 0;
+    int tmp;
+    if(t == pos + 1) {
+        return dist[0][pos];
+    }
 
     for(int i = 0 ; i < t ; i++) {
-        if (pos == i || //ya visidado) {
-            continue;
+        if (!(bitmask & (1 << i))) {
+            tmp = dist[pos][i] + tsp( i, bitmask | (1 << i));
+            m = min(m, tmp);
         }
-        tmp = dist[pos][i + 1] + tsp( i + 1, bitmask | 1 << pos + 1);
-        m = min(m, tmp);
     }
 
     return m;
@@ -42,8 +43,7 @@ int main() {
                 dist[i][j] = dist[j][i] =  abs(x[i] - x[j]) + abs(y[i] - y[j]);
             }
         }
-        int x = tsp(0,0);
-        printf("digito = %d", tsp(0,0));
+        printf("digito = %d", tsp(0,1));
     }
     return 0;
 }
