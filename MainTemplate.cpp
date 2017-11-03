@@ -1,6 +1,3 @@
-//
-// Created by Omar Cespedes on 10/24/17.
-//
 #include <cstdio>
 
 using namespace std;
