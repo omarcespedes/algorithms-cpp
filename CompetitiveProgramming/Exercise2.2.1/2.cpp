@@ -22,6 +22,9 @@ int main() {
     for(int i = 0 ; i < M ; i++) {
         if(i >= n) break;
         if( f[i] && f[n-i]) {
+            if(i == n-i && f[i] < 2) {
+                continue;
+            }
             f[i] -= 1;
             f[n-i] -= 1;
             cout << "Pair: " << i << "-" << n-i << endl;
