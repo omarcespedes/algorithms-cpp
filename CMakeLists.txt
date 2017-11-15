@@ -3,5 +3,5 @@ project(algorithms-cpp)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES uva/uva10496/uva10496.cpp)
+set(SOURCE_FILES CompetitiveProgramming/Exercise2.2.1/5-LongestContiguousSubArray.cpp)
 add_executable(algorithms-cpp ${SOURCE_FILES})
